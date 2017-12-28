@@ -1,18 +1,22 @@
 package com.crudapp.controller;
 
+import java.util.List;
+
+import com.crudapp.form.IndexForm;
 import com.crudapp.repository.UserRepository;
 import com.crudapp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 
-@RestController
+/*@RestController*/
+@Controller
 @EnableAutoConfiguration
 public class IndexController {
 
@@ -20,8 +24,14 @@ public class IndexController {
     UserRepository userRepository;
 
     @RequestMapping("/")
-    @ResponseBody
-    public String index() {
+    /*@ResponseBody*/
+    public String index(Model model) {
+
+
+        model.addAttribute("message", "やったー!!");
+        model.addAttribute("indexForm", new IndexForm());
+        return "index";
+/*
         StringBuilder sb = new StringBuilder();
 
         System.out.println("[START] データベースに接続してデータを取得します。");
@@ -34,5 +44,22 @@ public class IndexController {
 
         //return "Hello world";
         return sb.toString();
+  */
+    }
+
+    @RequestMapping(value="/result", method=RequestMethod.POST)
+    public String indexFormSubmit(@ModelAttribute IndexForm indexForm, Model model) {
+        if (indexForm.getId() == 1) {
+            indexForm.setContent("お前がナンバーワンだ！");
+        }
+        model.addAttribute("indexForm", indexForm);
+        return "result";
+    }
+
+    @RequestMapping("/select")
+    public List<User> select(@RequestParam("id") Integer id) {
+        System.out.println("aaa");
+        List<User> list = userRepository.findById(id);
+        return list;
     }
 }

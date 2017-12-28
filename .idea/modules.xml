@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crud_app.iml" filepath="$PROJECT_DIR$/.idea/modules/crud_app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crud_app_main.iml" filepath="$PROJECT_DIR$/.idea/modules/crud_app_main.iml" group="crud_app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crud_app_test.iml" filepath="$PROJECT_DIR$/.idea/modules/crud_app_test.iml" group="crud_app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crudapp.iml" filepath="$PROJECT_DIR$/.idea/modules/crudapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crudapp_main.iml" filepath="$PROJECT_DIR$/.idea/modules/crudapp_main.iml" group="crudapp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crudapp_test.iml" filepath="$PROJECT_DIR$/.idea/modules/crudapp_test.iml" group="crudapp" />
     </modules>
   </component>
 </project>

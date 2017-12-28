@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Sample</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<h1 th:text="${message}"></h1>
+<div class="container">
+    <form action="#" th:action="@{/result}" th:object="${indexForm}" method="post">
+        <div class="form-group">
+            <label>name</label>
+            <input type="text" th:field="*{id}" class="form-control"/>
+            <!--<input type="text" name="email" class="form-control">-->
+        </div>
+        <div class="form-group">
+            <label>password</label>
+            <input type="text" name="password" class="form-control">
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox">remember
+            </label>
+        </div>
+        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+        <!--<button type="submit">ログイン</button>-->
+    </form>
+</div>
+</body>
+</html>
