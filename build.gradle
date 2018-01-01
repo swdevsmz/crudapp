@@ -1,8 +1,11 @@
 buildscript {
     ext {
         springBootVersion = '1.5.9.RELEASE'
+        encoding = 'UTF-8'
+        compatibility = 1.8
     }
     repositories {
+        jcenter()
         mavenCentral()
         maven { url "https://repo.spring.io/snapshot" }
         maven { url "https://repo.spring.io/milestone" }
@@ -12,21 +15,39 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version '1.5.9.RELEASE'
+}
+
+description 'crudapp'
 
 group = 'crudapp'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+
+sourceCompatibility = compatibility
+targetCompatibility = compatibility
+
+sourceSets {
+    main {
+        // mybatis SQL map XML ファイルを java 以下でも検知する
+        resources.srcDirs = ["src/main/java", "src/main/resources"]
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
 
 jar {
     baseName = 'springboot-sample'
     version = '0.0.1-SNAPSHOT'
 }
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 idea {
     module {
@@ -35,12 +56,14 @@ idea {
     }
 }
 
-repositories {
-    mavenCentral()
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
+/*
+eclipse {
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
 }
-
+*/
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
@@ -58,20 +81,14 @@ dependencies {
     compile("org.webjars:jquery:2.1.4")
     compile("org.webjars:bootstrap:3.3.5")
 
-
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("junit:junit:4.12")
 }
 
-ext['thymeleaf.version'] = '3.0.7.RELEASE'
+ext['thymeleaf.version'] = '3.0.8.RELEASE'
 ext['thymeleaf-layout-dialect.version'] = '2.2.2'
 
-eclipse {
-    classpath {
-        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
-        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
-    }
-}
+
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.4'
